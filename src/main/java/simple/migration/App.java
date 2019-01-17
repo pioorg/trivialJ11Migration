@@ -54,15 +54,15 @@ public class App {
     private static String createBase64(String input) {
         byte[] bytes = input.getBytes();
         System.out.println("// going to base64 ["+bytes.length+"] bytes");
-        return new sun.misc.BASE64Encoder().encode(bytes);
+        return java.util.Base64.getEncoder().encodeToString(bytes);
     }
 
     private static void deepLookInto(String input) {
         try {
             Field valueField = String.class.getDeclaredField("value");
             valueField.setAccessible(true);
-            char[] actualValue = (char[])valueField.get(input);
-            System.out.println("Actual char array in string is: " + Arrays.toString(actualValue));
+            byte[] actualValue = (byte[])valueField.get(input);
+            System.out.println("Actual byte array in string is: " + Arrays.toString(actualValue));
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }

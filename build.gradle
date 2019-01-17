@@ -4,8 +4,8 @@ plugins {
     id 'application'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_1_9
+targetCompatibility = JavaVersion.VERSION_1_9
 
 repositories {
     jcenter()
@@ -13,5 +13,8 @@ repositories {
 
 dependencies {
 }
+
+compileJava.options.compilerArgs += ['--add-modules', 'java.xml.bind']
+run.jvmArgs += ['--add-modules', 'java.xml.bind', '--illegal-access=debug', '--add-opens', 'java.base/java.lang=ALL-UNNAMED']
 
 mainClassName = 'simple.migration.App'
