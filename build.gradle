@@ -4,17 +4,19 @@ plugins {
     id 'application'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_9
-targetCompatibility = JavaVersion.VERSION_1_9
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     jcenter()
 }
 
 dependencies {
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'com.sun.xml.bind:jaxb-impl:2.3.2'
+    implementation 'com.sun.xml.bind:jaxb-core:2.3.0.1'
 }
 
-compileJava.options.compilerArgs += ['--add-modules', 'java.xml.bind']
-run.jvmArgs += ['--add-modules', 'java.xml.bind', '--illegal-access=debug', '--add-opens', 'java.base/java.lang=ALL-UNNAMED']
+run.jvmArgs += ['--illegal-access=debug', '--add-opens', 'java.base/java.lang=ALL-UNNAMED']
 
 mainClassName = 'simple.migration.App'
